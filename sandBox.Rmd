@@ -1,0 +1,351 @@
+---
+title: "Sandbox"
+author: "Kevin A. Ryan (JHUAPL)"
+date: "Wednesday, September 16, 2015"
+output: html_document
+---
+lines[[1]]<-"1 1"
+lines[[2]]<-"-1"
+```{r}
+lines<-0
+lines[[1]]<-"1 1"
+lines[[2]]<-"-1"
+line1 <- sapply(strsplit(lines[[1]], " "), as.numeric)
+line2 <- sapply(strsplit(lines[[2]], " "), as.numeric)
+
+x<-length(line1)-1
+Betas<-line1[1:x]
+Error<-line1[x+1]
+Data<-line2
+Y<-exp((sum(Data*Betas))+Error)
+p<-Y/(1+Y)
+
+
+n<-lines1[1]
+k<-lines1[2]
+k<-5
+
+#even - n/2
+#odd - 3n+1
+x<-n
+
+for (i in 1:k) {
+     
+if ((x%%2)==0) {x<-(x/2)}  
+        else {x<-((3*x)+1)}
+}
+
+print(x)
+
+```
+
+
+
+
+```{r}
+lines<-0
+lines[[1]]<-"111 5"
+lines1 <- sapply(strsplit(lines[[1]], " "), as.numeric)[,1]
+n<-lines1[1]
+k<-lines1[2]
+k<-5
+
+#even - n/2
+#odd - 3n+1
+x<-n
+
+for (i in 1:k) {
+     
+if ((x%%2)==0) {x<-(x/2)}  
+        else {x<-((3*x)+1)}
+}
+
+print(x)
+
+
+```
+
+
+
+
+
+
+```{r}
+lines<- "I may opt for a top yam for Amy, May, and Tommy."
+
+T <- "We promptly judged antique ivory buckles for the prize "
+T <- strsplit(T, "")
+T = sort(unique(tolower(unlist(T))))
+T=gsub("[^[:alnum:]]","",T)[-1]
+if(sum(T%in%letters)==26){T="pangram"}else{T="not pangram"}
+write(as.character(T), stdout())
+
+```
+
+
+```{r}
+```{r}
+lines<-0
+lines[[1]]<-"8 3"
+lines1 <- sapply(strsplit(lines[[1]], " "), as.numeric)[,1]
+M<-lines1[1]
+N<-lines1[2]
+
+output<-choose(M,N)
+write(output, "")
+
+#data=suppressWarnings(readLines(file("stdin")))
+#data=strsplit(data,split=" ")
+N=as.numeric(lines[[1]])
+X=as.numeric(lines[[2]])
+
+
+```
+
+
+
+```{r}
+lines<-0
+lines[[1]]<-"1.5 2 -1 -2.5 3"
+lines[[2]]<-"2 -1 2 .5"
+lines
+
+actual1 <- sapply(strsplit(lines[[1]], " "), as.numeric)[,1]
+
+
+#data=suppressWarnings(readLines(file("stdin")))
+#data=strsplit(data,split=" ")
+N=as.numeric(lines[[1]])
+X=as.numeric(lines[[2]])
+
+
+```
+
+
+
+
+
+
+ 
+Pangram
+```{r}
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+T <- "We promptly judged antique ivory buckles for the prize "
+T <- strsplit(T, "")
+T = sort(unique(tolower(unlist(T))))
+T=gsub("[^[:alnum:]]","",T)[-1]
+if(sum(T%in%letters)==26){T="pangram"}else{T="not pangram"}
+write(as.character(T), stdout())
+
+```
+
+
+
+Machine Learning Problem:
+```{r}
+stop.words <- c("", "a", "also", "an", "and", "are", "as", "at", "be", "but", "by", "for", "from", "had", "has", "have", "he", "his", "i", "if", "in", "is", "it", "its", "not", "of", "on", "or", "reuter", "said", "than", "that", "the", "their", "they", "this", "to", "was", "we", "were", "will", "with", "which", "would")
+
+# Training data
+training.input <- readLines("trainingdata.txt")
+num.docs <- as.numeric(training.input[1])
+training.data <- training.input[2:(num.docs+1)]
+
+
+doc.id <- vapply(as.list(training.data),
+                 function(x) substr(x, start=1, stop=1), "")
+doc.text <- vapply(as.list(training.data),
+                   function(x) substr(x, start=3, stop=nchar(x)), "")
+num.classes <- length(levels(factor(doc.id)))
+
+class.text <- lapply(levels(factor(doc.id)),
+                     function(x) paste(doc.text[doc.id==x], collapse=" "))
+
+class.words <- lapply(class.text, function(x) {
+    a <- strsplit(x, " ")[[1]]
+
+    # Remove stop words
+    a <- a[!(a %in% stop.words)]
+
+    # Use only the most frequent words
+    names(head(sort(table(a), decreasing=T), 30))
+})
+
+# Test data
+test.input <- readLines("stdin")
+num.test.docs <- as.numeric(test.input[1])
+test.text <- test.input[2:(num.test.docs+1)]
+test.words <- lapply(test.text, function(x) unlist(strsplit(x, " ")))
+
+output <- vapply(test.words, function(x) {
+    a <- vapply(class.words, function(i) sum(i %in% x), 1)
+    which.max(a)
+}, 1)
+cat(output, sep="\n")
+```
+
+```{r}
+L<-0
+L[[1]] <- "9 6 2015"
+L[[2]] <- "6 6 2015"
+step1<-strsplit(L[[1]], " ")[,1]
+step1<-as.numeric
+
+
+print(step1)
+
+```
+
+
+Library Fine problem:
+```{r}
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+L<-0
+L[[1]] <- "9 6 2015"
+L[[2]] <- "6 6 2015"
+
+actual1 <- sapply(strsplit(L[[1]], " "), as.numeric)
+
+actual2<-actual1[,1]
+
+names(actual) <- c("day", "month", "year")
+
+
+expected <- sapply(strsplit(L[[2]], " "), as.numeric)[,1]
+names(expected) <- c("day","month","year")
+
+days.late <- (actual["year"] - expected["year"]) * 365 +
+  (actual["month"] - expected["month"]) * 12 +
+  (actual["day"] - expected["day"])
+
+fine <- 0
+if (days.late < 0) {
+    fine <- 0
+} else if ((actual["month"] == expected["month"]) &&
+          (actual["year"] == expected["year"])) {
+    fine <- 15 * days.late   
+} else if (actual["year"] == expected["year"]) {
+    fine <- (actual["month"] - expected["month"]) * 500
+} else {
+    fine <- 10000
+}
+cat(fine)
+```
+
+
+
+Challenge 5: Plus Minus
+```{r}
+# build test cast
+X<-as.numeric(c(-4, 3, -9,  0,  4 , 1))
+
+
+#Start code here
+data=suppressWarnings(readLines(file("stdin")))
+data=strsplit(data,split=" ")
+N=as.numeric(data[[1]])
+X=as.numeric(data[[-1]])
+
+Pos<-(X>0)
+Neg<-(X<0)              
+Zero<-(X==0)
+
+out=as.matrix(1:3, nrows = 3, ncols=1)
+out[1,1]<-length(which(Pos == TRUE))/length(Pos)
+out[2,1]<-length(which(Neg == TRUE))/length(Neg)
+out[3,1]<-length(which(Zero == TRUE))/length(Zero)
+
+#end code
+write(as.character(out), stdout())
+```
+
+Challenge 4: Simple Array Sum
+```{r}
+
+# build test cast
+r1<-c(11, 2, 4)
+r2<-c(4,5,6)
+r3<-c(10, 8, -12)
+mydata <- rbind(r1, r2, r3)
+NxN<-as.matrix(nrows = 3, ncols = 3, mydata)
+
+#start code here....check that output comes in legit
+data=suppressWarnings(readLines(file("stdin")))
+data=strsplit(data,split=" ")
+N=as.numeric(data[[1]])
+NxN=as.numeric(data[[-1]])
+
+#cut to the test case data....
+diag1=as.numeric(0)
+diag2=as.numeric(0)
+for(i in 1:N){
+        diag1=as.numeric(NxN[[i+1]][i])+as.numeric(diag1)}
+
+for(i in N:1){
+        diag2=as.numeric(NxN[[n-i+2]][i])+as.numeric(diag2)}
+
+out<-sum(D1)-sum(diag(NxN))
+
+
+#end code
+write(as.character(out), stdout())
+```
+
+
+Challenge 3: A very big sum
+```{r}
+stdin <- scan("/dev/stdin")
+out <- sum(stdin[-1])
+write(as.character(out), stdout())
+
+```
+
+
+Challenge #2: Gold
+```{r}
+
+T <- suppressWarnings(readLines(file("stdin")))
+T <- strsplit(T, " ")
+
+Ti <- as.numeric(T[[1]])
+Tnew <- T[-1]
+for(i in 1:Ti){
+    out <- sum(as.numeric(Tnew[[i]]))
+    write(as.character(out), stdout())
+    
+}
+```
+
+Challenge #1 (gold)
+```{r}
+
+#remember that STDIN and STOUT are not actual variables...they are more like locations
+# read the input file as given by HackerRank
+nums <- read.table("/dev/stdin", sep=" ");
+
+OR 
+
+#use case tester....need to be able to include 
+nums<- matrix(nrow = 2, ncol =4)
+nums[1,1:4]<-c(1, 2, 3, 44)
+nums[2,1:3]<-c(10, 20, 30)
+
+write.table(nums, sep = " ", append=T, row.names = F, col.names = F)
+
+#transpose the data from side by side to top to bottom
+nums2 <- as.list(as.data.frame(t(nums)))
+
+#convert the new data frame to numeric
+nums3<-as.numeric(nums2)
+
+#add the elements of the data frame
+xx<-sum(nums3)
+
+#print the data frame, eliminating any names, etc
+write.table(xx, sep = "", append=T, row.names = F, col.names = F)
+
+```
+
+
+
+
